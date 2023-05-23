@@ -1,0 +1,48 @@
+def     ANN_func(X,y):
+        K.clear_session() 
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
+
+        sc = StandardScaler()
+        X_train = sc.fit_transform(X_train)
+        X_test = sc.transform(X_test)
+
+
+        # keras model
+
+
+
+        model = Sequential()
+        model.add(Dense(activation = "elu", input_dim = 13, units = 8, kernel_initializer = "uniform"))
+        model.add(Dense(activation = "elu", units = 12, kernel_initializer = "uniform"))
+        model.add(Dense(activation = "sigmoid", units = 1, kernel_initializer = "uniform"))
+        
+
+
+        model.compile(optimizer = 'adam' , loss = 'binary_crossentropy', metrics = ['accuracy'] )
+
+        
+        
+        
+        hist=   model.fit(X_train , y_train , batch_size = 10, epochs =180, validation_split=0.2)
+
+        clsumm = model.summary()
+        cleval = model.evaluate(X_train,y_train)
+        clpred = model.predict(X_train)
+        clgwt  = model.get_weights()
+        
+        model.save("model.h5")
+        print("Saved model to disk")
+        network = models.load_model('model.h5')
+        
+
+        y_pred = model.predict(X_test)
+        y_pred = (y_pred > 0.5)
+
+        return y_test, y_pred, hist , cleval, clpred , clgwt,network , model
+
+
+y_test, y_pred, hist , cleval, clpred , clgwt,network, model = ANN_func(X,y)
+
+
+##https://www.kaggle.com/kcsener/1-supervised-learning-tutorial
+https://github.com/wadeagbo/Heart-Disease-Prediction
