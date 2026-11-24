@@ -1,0 +1,10 @@
+model,cv_accuracy,cv_roc_auc,test_accuracy,test_recall,test_f1,test_roc_auc
+Logistic regression,0.788,0.843,0.708,0.5,0.545,0.813
+Random forest,0.769,0.827,0.753,0.556,0.612,0.812
+Logistic regression + SMOTE,0.772,0.843,0.708,0.648,0.609,0.811
+k-nearest neighbours,0.769,0.832,0.74,0.556,0.6,0.807
+Neural network (Keras),,,0.708,0.5,0.545,0.8
+SVM (RBF kernel),0.78,0.833,0.74,0.556,0.6,0.796
+Naive Bayes,0.762,0.828,0.701,0.63,0.596,0.765
+Decision tree,0.728,0.769,0.76,0.722,0.678,0.762
+Baseline (majority class),0.651,0.5,0.649,0.0,0.0,0.5
